@@ -1,4 +1,4 @@
-﻿#include <fstream>
+#include <fstream>
 #include <iostream>
 #include <locale.h>
 #include <windows.h>
@@ -8,56 +8,27 @@ using namespace std;
 class figure
 {
 protected:
-    bool quadrilateral = false;
     string name = "Фигура";
     int aside = 0;
     int bside = 0;
     int cside = 0;
-    int dside = 0;
+    
     int acorner = 0;
     int bcorner = 0;
     int ccorner = 0;
-    int dcorner = 0;
+    
 public:
     string getName()
     {
         return name;
     }
-    int getQuadrilateral()
+    void printSides()
     {
-        return quadrilateral;
+        
     }
-    int getASide()
+    void printCorners()
     {
-        return aside;
-    }
-    int getBSide()
-    {
-        return bside;
-    }
-    int getCSide()
-    {
-        return cside;
-    }
-    int getDSide()
-    {
-        return dside;
-    }
-    int getACorner()
-    {
-        return acorner;
-    }
-    int getBCorner()
-    {
-        return bcorner;
-    }
-    int getCCorner()
-    {
-        return ccorner;
-    }
-    int getDCorner()
-    {
-        return dcorner;
+
     }
 };
 
@@ -73,6 +44,14 @@ public:
         acorner = acorner_;
         bcorner = bcorner_;
         ccorner = ccorner_;
+        void printSides();
+        {
+            cout << "Стороны: " << " a = " << aside << " b = " << bside << " c = " << cside << endl;
+        }
+        void printCorners();
+        {
+            cout << "Углы: " << " A = " << acorner << " B = " << bcorner << " C = " << ccorner << endl;
+        }
     }      
 };
 
@@ -108,10 +87,12 @@ public:
 
 class rectangle : public figure
 { // ==========================================база 4угольника
+private:
+    int dside = 0;
+    int dcorner = 0;
 public:
     rectangle(int aside_, int bside_, int cside_, int dside_, int acorner_, int bcorner_, int ccorner_, int dcorner_)
     {
-        quadrilateral = true;
         name = "четырехугольник";
         aside = aside_;
         bside = bside_;
@@ -121,6 +102,14 @@ public:
         bcorner = bcorner_;
         ccorner = ccorner_;
         dcorner = dcorner_;
+        void printSides();
+        {
+            cout << "Стороны: " << " a = " << aside << " b = " << bside << " c = " << cside << " d = " << dside << endl;
+        }
+        void printCorners();
+        {
+            cout << "Углы: " << " A = " << acorner << " B = " << bcorner << " C = " << ccorner << " D = " << dcorner << endl;
+        }
     }
 };
 
@@ -168,25 +157,11 @@ public:
 void print_info(figure &f)
 {
     cout << f.getName() << endl;
-    cout << "Стороны:" << " a = " << f.getASide() << " b = " << f.getBSide() << " c = " << f.getCSide();
-    if (f.getQuadrilateral())
-    {
-        cout << " d = " << f.getDSide() << endl;
-    }
-    else
-    {
-        cout << endl;
-    }
 
-    cout << "Углы:" << " A = " << f.getACorner() << " B = " << f.getBCorner() << " C = " << f.getCCorner();
-    if (f.getQuadrilateral())
-    {
-        cout << " D = " << f.getDCorner() << "\n\n";
-    }
-    else
-    {
-        cout << "\n\n";
-    }
+    f.printSides();
+    f.printCorners();
+
+    cout << endl;
 }
 int main()
 {
