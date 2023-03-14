@@ -9,31 +9,26 @@ class figure
 {
 protected:
     string name = "Фигура";
-    int aside = 0;
-    int bside = 0;
-    int cside = 0;
-    
-    int acorner = 0;
-    int bcorner = 0;
-    int ccorner = 0;
-    
 public:
     string getName()
     {
         return name;
     }
-    void printSides()
-    {
-        
-    }
-    void printCorners()
-    {
-
-    }
+    virtual void printSides()
+    {}
+    virtual void printCorners()
+    {}
 };
 
 class triangle: public figure
 { // ==========================================база 3угольника
+    int aside = 0;
+    int bside = 0;
+    int cside = 0;
+
+    int acorner = 0;
+    int bcorner = 0;
+    int ccorner = 0;
 public:
     triangle(int aside_, int bside_, int cside_, int acorner_, int bcorner_, int ccorner_)
     {
@@ -44,15 +39,15 @@ public:
         acorner = acorner_;
         bcorner = bcorner_;
         ccorner = ccorner_;
-        void printSides();
-        {
-            cout << "Стороны: " << " a = " << aside << " b = " << bside << " c = " << cside << endl;
-        }
-        void printCorners();
-        {
-            cout << "Углы: " << " A = " << acorner << " B = " << bcorner << " C = " << ccorner << endl;
-        }
     }      
+    void printSides()override
+    {
+        cout << "Стороны: " << " a = " << aside << " b = " << bside << " c = " << cside << endl;
+    }
+    void printCorners()override
+    {
+        cout << "Углы: " << " A = " << acorner << " B = " << bcorner << " C = " << ccorner << endl;
+    }
 };
 
 class rightTriangle: public triangle
@@ -88,7 +83,14 @@ public:
 class rectangle : public figure
 { // ==========================================база 4угольника
 private:
+    int aside = 0;
+    int bside = 0;
+    int cside = 0;
     int dside = 0;
+
+    int acorner = 0;
+    int bcorner = 0;
+    int ccorner = 0;
     int dcorner = 0;
 public:
     rectangle(int aside_, int bside_, int cside_, int dside_, int acorner_, int bcorner_, int ccorner_, int dcorner_)
@@ -102,14 +104,14 @@ public:
         bcorner = bcorner_;
         ccorner = ccorner_;
         dcorner = dcorner_;
-        void printSides();
-        {
-            cout << "Стороны: " << " a = " << aside << " b = " << bside << " c = " << cside << " d = " << dside << endl;
-        }
-        void printCorners();
-        {
-            cout << "Углы: " << " A = " << acorner << " B = " << bcorner << " C = " << ccorner << " D = " << dcorner << endl;
-        }
+    }
+    void printSides()override
+    {
+        cout << "Стороны: " << " a = " << aside << " b = " << bside << " c = " << cside << " d = " << dside << endl;
+    }
+    void printCorners()override
+    {
+        cout << "Углы: " << " A = " << acorner << " B = " << bcorner << " C = " << ccorner << " D = " << dcorner << endl;
     }
 };
 
@@ -156,7 +158,7 @@ public:
 
 void print_info(figure &f)
 {
-    cout << f.getName() << endl;
+    cout << f.getName() << ": " << endl;
 
     f.printSides();
     f.printCorners();
